@@ -2,14 +2,14 @@ name: Build and Push to ECR
 
 on:
   push:
-    branches: [ "main" ] # main 브랜치에 코드가 올라오면 실행
+    branches: [ "main" ]
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+  build-and-push:                
+    runs-on: ubuntu-latest       
     
-    steps:
-    - name: Check out code
+    steps:                       
+    - name: Check out code       
       uses: actions/checkout@v3
 
     - name: Configure AWS credentials
@@ -17,7 +17,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-northeast-2 # AWS 리전
+        aws-region: ap-northeast-2
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -27,7 +27,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: autoever-guestbook
-        IMAGE_TAG: ${{ github.sha }} # 커밋 해시값을 태그로 사용 (버전 관리 용이)
+        IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
