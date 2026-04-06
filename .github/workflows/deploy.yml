@@ -40,7 +40,7 @@ jobs:
       with:
         repository: Yeonhee-Kim/k8s-manifests # 실제 매니페스트 레포 주소
         token: ${{ secrets.MANIFEST_TOKEN }} # 방금 등록한 시크릿 이름
-        path: manifests # 작업 공간 내 폴더 이름
+        path: k8s-manifests # 작업 공간 내 폴더 이름
 
     - name: Update Kubernetes resources
       run: |
