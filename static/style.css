@@ -7,11 +7,60 @@
 body { font-family: 'Inter', sans-serif; margin: 0; display: flex; background: var(--bg-gray); }
 
 /* Sidebar */
-.sidebar { width: 240px; height: 100vh; background: var(--hc-navy); color: white; padding: 20px; position: fixed; }
-.sidebar h2 { font-size: 1.2rem; border-bottom: 1px solid #ffffff33; padding-bottom: 20px; }
-.nav-item { padding: 15px 0; cursor: pointer; color: #adb5bd; transition: 0.3s; }
-.nav-item.active { color: white; font-weight: bold; }
+.sidebar { 
+    width: 240px; 
+    height: 100vh; 
+    background: var(--hc-navy); 
+    color: white; 
+    padding: 20px; 
+    position: fixed; 
+    display: flex;
+    flex-direction: column;
+}
 
+/* 로고와 타이틀이 들어가는 브랜드 영역 */
+.brand-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 구분선 살짝 */
+}
+
+/* 로고를 감싸는 하얀색 매직 박스! */
+.logo-wrapper {
+    background-color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* 사이드바 너비에 맞춤 */
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 부드러운 입체감 */
+    margin-bottom: 15px;
+}
+
+/* 로고 이미지 크기 조절 */
+.sidebar-logo-img {
+    width: 100%;      /* wrapper 너비에 맞게 */
+    max-width: 140px; /* 너무 커지지 않게 제한 */
+    height: auto;
+}
+
+/* 타이틀 텍스트 스타일 */
+.sidebar h2 { 
+    font-size: 1.1rem; 
+    margin: 0;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.nav-item { padding: 15px 0; cursor: pointer; color: #adb5bd; transition: 0.3s; }
+.nav-item:hover { color: white; } /* 마우스 올렸을 때 효과 추가 */
+.nav-item.active { color: white; font-weight: bold; }
 /* Main Content */
 .main-content { margin-left: 280px; padding: 40px; width: 100%; }
 

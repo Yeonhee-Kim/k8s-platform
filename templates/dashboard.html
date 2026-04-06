@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+i<!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -6,10 +6,13 @@
 </head>
 <body>
     <div class="sidebar">
-	<div class="sidebar-logo">
-        	<img src="{{ url_for('static', filename='logo.png') }}" alt="Autoever Logo" style="width: 160px; margin-bottom: 20px;">
-    	</div>
-        <h2>AUTOEVER R&D</h2>
+        <div class="brand-area">
+            <div class="logo-wrapper">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Autoever Logo" class="sidebar-logo-img">
+            </div>
+            <h2>AUTOEVER R&D</h2>
+        </div>
+
         <div class="nav-item active">🏠 Dashboard</div>
         <div class="nav-item">🧪 Experiments</div>
         <div class="nav-item">📊 Cluster Status</div>
