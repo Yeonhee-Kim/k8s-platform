@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Autoever R&D Platform</title>
+</head>
+<body>
+    <div class="sidebar">
+	<div class="sidebar-logo">
+        	<img src="{{ url_for('static', filename='logo.png') }}" alt="Autoever Logo" style="width: 160px; margin-bottom: 20px;">
+    	</div>
+        <h2>AUTOEVER R&D</h2>
+        <div class="nav-item active">🏠 Dashboard</div>
+        <div class="nav-item">🧪 Experiments</div>
+        <div class="nav-item">📊 Cluster Status</div>
+        <div class="nav-item">⚙️ Settings</div>
+    </div>
+
+    <div class="main-content">
+        <header style="margin-bottom: 30px;">
+            <h1>Platform Operations Center</h1>
+            <p>Real-time Kubernetes Cluster & ML Pipeline Monitoring</p>
+        </header>
+
+        <div class="kpi-container">
+            <div class="kpi-card"><h3>Active Pods</h3><p>{{ stats.active_pods }}</p></div>
+            <div class="kpi-card"><h3>GPU Cluster Usage</h3><p>{{ stats.gpu_usage }}</p></div>
+            <div class="kpi-card"><h3>CPU Core Load</h3><p>{{ stats.cpu_usage }}</p></div>
+            <div class="kpi-card"><h3>Training Success</h3><p>{{ stats.success_rate }}</p></div>
+        </div>
+
+        <div class="section">
+            <h3>Register New Experiment</h3>
+            <form action="/register" method="POST" style="display: flex; gap: 15px;">
+                <input type="text" name="name" placeholder="Experiment Name" required style="flex:2; padding: 10px;">
+                <input type="text" name="researcher" placeholder="Researcher ID" required style="flex:1; padding: 10px;">
+                <button type="submit" class="btn-primary">Launch Job</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Recent Experiments</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job ID</th>
+                        <th>Name</th>
+                        <th>Researcher</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exp in experiments %}
+                    <tr>
+                        <td>{{ exp.id }}</td>
+                        <td><strong>{{ exp.name }}</strong></td>
+                        <td>{{ exp.researcher }}</td>
+                        <td>
+                            <span class="badge {{ 'status-success' if exp.status == 'Success' else 'status-running' }}">
+                                ● {{ exp.status }}
+                            </span>
+                        </td>
+                        <td>{{ exp.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
