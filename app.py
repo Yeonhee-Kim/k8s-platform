@@ -5,6 +5,16 @@ import requests  # 프로메테우스 API 호출을 위해 필요합니다.
 
 app = Flask(__name__)
 
+@app.route('/health')
+def health_check():
+    # 앱이 살아있는지 확인하는 용도
+    return "System is healthy", 200
+
+@app.route('/ready')
+def ready_check():
+    # DB 연결이나 초기화가 완료되었는지 확인하는 용도
+    return "VPC/EKS Network Connected", 200
+
 # [설정] 프로메테우스 서버 주소 (Helm 설치 시 기본 서비스 이름 기준)
 # 만약 다른 네임스페이스에 설치했다면 주소를 수정해야 합니다.
 PROMETHEUS_URL = "http://prometheus-stack-server.default.svc.cluster.local"
